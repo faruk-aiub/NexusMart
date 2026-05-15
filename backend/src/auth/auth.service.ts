@@ -82,4 +82,22 @@ export class AuthService {
       },
     };
   }
+
+  async getProfile(userId: number) {
+    const user = await this.usersService.findById(userId);
+
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+
+    return {
+      id: user.id,
+      fullName: user.fullName,
+      email: user.email,
+      phone: user.phone,
+      role: user.role,
+      status: user.status,
+      createdAt: user.createdAt,
+    };
+  }
 }

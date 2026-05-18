@@ -9,6 +9,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 import { CartsService } from './carts.service';
 import { AddCartItemDto } from './dto/add-cart-item.dto';
@@ -21,6 +22,8 @@ import { CurrentUser } from '../auth/decorators/current-user.decorator';
 
 import { UserRole } from '../common/enums/user-role.enum';
 
+@ApiTags('Carts')
+@ApiBearerAuth('access-token')
 @Controller('carts')
 export class CartsController {
   constructor(private cartsService: CartsService) {}

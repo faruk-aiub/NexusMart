@@ -8,6 +8,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
@@ -20,6 +21,8 @@ import { CurrentUser } from '../auth/decorators/current-user.decorator';
 
 import { UserRole } from '../common/enums/user-role.enum';
 
+@ApiTags('Orders')
+@ApiBearerAuth('access-token')
 @Controller('orders')
 export class OrdersController {
   constructor(private ordersService: OrdersService) {}

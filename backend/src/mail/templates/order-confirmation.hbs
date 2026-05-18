@@ -1,0 +1,22 @@
+<h2>Thank you for your order, {{customerName}}!</h2>
+
+<p>Your order has been placed successfully.</p>
+
+<p><strong>Order ID:</strong> #{{orderId}}</p>
+<p><strong>Total Amount:</strong> {{totalAmount}}</p>
+<p><strong>Delivery Address:</strong> {{address}}</p>
+<p><strong>Payment Method:</strong> {{paymentMethod}}</p>
+
+<h3>Ordered Products</h3>
+
+<ul>
+  {{#each items}}
+    <li>
+      {{this.product.name}} - Quantity: {{this.quantity}} - Price: {{this.price}}
+    </li>
+  {{/each}}
+</ul>
+
+<p>We will process your order soon.</p>
+
+<p>Regards,<br />NexusMart Team</p>

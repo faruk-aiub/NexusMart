@@ -22,29 +22,127 @@ import ManageOrders from '../pages/admin/ManageOrders'
 import ManageCustomers from '../pages/admin/ManageCustomers'
 import Inventory from '../pages/admin/Inventory'
 
+import AdminRoute from './AdminRoute'
+import CustomerRoute from './CustomerRoute'
+
 function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
+
         <Route path="products" element={<Products />} />
         <Route path="products/:id" element={<ProductSingle />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
 
-        <Route path="customer/dashboard" element={<CustomerDashboard />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="checkout" element={<Checkout />} />
-        <Route path="my-orders" element={<MyOrders />} />
-        <Route path="profile" element={<Profile />} />
+        <Route
+          path="customer/dashboard"
+          element={
+            <CustomerRoute>
+              <CustomerDashboard />
+            </CustomerRoute>
+          }
+        />
 
-        <Route path="admin/dashboard" element={<AdminDashboard />} />
-        <Route path="admin/products" element={<ManageProducts />} />
-        <Route path="admin/products/add" element={<AddProduct />} />
-        <Route path="admin/categories" element={<ManageCategories />} />
-        <Route path="admin/orders" element={<ManageOrders />} />
-        <Route path="admin/customers" element={<ManageCustomers />} />
-        <Route path="admin/inventory" element={<Inventory />} />
+        <Route
+          path="cart"
+          element={
+            <CustomerRoute>
+              <Cart />
+            </CustomerRoute>
+          }
+        />
+
+        <Route
+          path="checkout"
+          element={
+            <CustomerRoute>
+              <Checkout />
+            </CustomerRoute>
+          }
+        />
+
+        <Route
+          path="my-orders"
+          element={
+            <CustomerRoute>
+              <MyOrders />
+            </CustomerRoute>
+          }
+        />
+
+        <Route
+          path="profile"
+          element={
+            <CustomerRoute>
+              <Profile />
+            </CustomerRoute>
+          }
+        />
+
+        <Route
+          path="admin/dashboard"
+          element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="admin/categories"
+          element={
+            <AdminRoute>
+              <ManageCategories />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="admin/products"
+          element={
+            <AdminRoute>
+              <ManageProducts />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="admin/products/add"
+          element={
+            <AdminRoute>
+              <AddProduct />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="admin/orders"
+          element={
+            <AdminRoute>
+              <ManageOrders />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="admin/inventory"
+          element={
+            <AdminRoute>
+              <Inventory />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="admin/customers"
+          element={
+            <AdminRoute>
+              <ManageCustomers />
+            </AdminRoute>
+          }
+        />
       </Route>
     </Routes>
   )

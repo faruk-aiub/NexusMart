@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { loginUser } from '../../services/authService'
-import { saveToken } from '../../utils/tokenHelper'
+import { saveToken, saveUser } from '../../utils/tokenHelper'
 
 function Login() {
   const navigate = useNavigate()
@@ -34,8 +34,7 @@ function Login() {
       const data = await loginUser(formData)
 
       saveToken(data.accessToken)
-
-      setMessage('Login successful')
+      saveUser(data.user)
 
       if (data.user.role === 'admin') {
         navigate('/admin/dashboard')
@@ -50,68 +49,117 @@ function Login() {
   }
 
   return (
-    <section className="mx-auto max-w-md px-6 py-10">
-      <div className="rounded-2xl bg-white p-8 shadow">
-        <h1 className="text-2xl font-bold text-gray-900">Login</h1>
+    <section className="relative overflow-hidden px-6 py-16">
+      <div className="absolute left-10 top-20 h-72 w-72 rounded-full bg-[#646cff]/25 blur-3xl"></div>
+      <div className="absolute bottom-10 right-10 h-72 w-72 rounded-full bg-[#a855f7]/25 blur-3xl"></div>
 
-        <p className="mt-2 text-gray-600">
-          Login to continue shopping at NexusMart.
-        </p>
+      <div className="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
+        <div className="hidden lg:block">
+          <span className="inline-flex rounded-full bg-violet-100 px-4 py-2 text-sm font-semibold text-[#646cff] dark:bg-violet-950 dark:text-violet-300">
+            Welcome to NexusMart
+          </span>
 
-        {message && (
-          <p className="mt-4 rounded-lg bg-gray-100 px-4 py-2 text-sm text-gray-700">
-            {message}
+          <h1 className="mt-6 text-5xl font-extrabold leading-tight text-slate-900 dark:text-white">
+            Continue your{' '}
+            <span className="bg-gradient-to-r from-[#646cff] to-[#a855f7] bg-clip-text text-transparent">
+              shopping experience
+            </span>
+          </h1>
+
+          <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+            Sign in to explore products, manage your cart, place new orders
+            and view your shopping history from one simple account.
           </p>
-        )}
 
-        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-          <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700">
-              Email
-            </label>
+          <div className="mt-8 rounded-[2rem] bg-gradient-to-br from-[#646cff] to-[#a855f7] p-8 text-white shadow-2xl shadow-violet-300/40">
+            <h2 className="text-3xl font-extrabold">Shop with ease</h2>
 
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
-              required
-            />
+            <div className="mt-6 space-y-4">
+              <p className="rounded-2xl bg-white/15 p-4">
+                ✓ Browse latest products in a clean marketplace
+              </p>
+
+              <p className="rounded-2xl bg-white/15 p-4">
+                ✓ Add items to cart and checkout smoothly
+              </p>
+
+              <p className="rounded-2xl bg-white/15 p-4">
+                ✓ Track your orders and shopping activity anytime
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-[2rem] border border-slate-200 bg-white/90 p-8 shadow-2xl shadow-slate-200 backdrop-blur dark:border-slate-700 dark:bg-slate-900/90 dark:shadow-none">
+          <div className="mb-8 text-center">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-gradient-to-br from-[#646cff] to-[#a855f7] text-2xl font-bold text-white shadow-lg shadow-violet-300/40">
+              N
+            </div>
+
+            <h1 className="mt-5 text-3xl font-extrabold text-slate-900 dark:text-white">
+              Login
+            </h1>
+
+            <p className="mt-2 text-slate-500 dark:text-slate-400">
+              Enter your email and password to continue.
+            </p>
           </div>
 
-          <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700">
-              Password
-            </label>
+          {message && (
+            <p className="mb-5 rounded-2xl bg-red-50 px-5 py-4 text-sm font-medium text-red-700 dark:bg-red-950 dark:text-red-300">
+              {message}
+            </p>
+          )}
 
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Enter your password"
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
-              required
-            />
-          </div>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                Email
+              </label>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 disabled:bg-blue-300"
-          >
-            {loading ? 'Logging in...' : 'Login'}
-          </button>
-        </form>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="customer@example.com"
+                className="w-full rounded-2xl border border-slate-300 bg-white px-5 py-4 text-slate-900 outline-none transition focus:border-[#646cff] dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                required
+              />
+            </div>
 
-        <p className="mt-5 text-center text-sm text-gray-600">
-          Do not have an account?{' '}
-          <Link to="/register" className="font-medium text-blue-600">
-            Register
-          </Link>
-        </p>
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                Password
+              </label>
+
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                className="w-full rounded-2xl border border-slate-300 bg-white px-5 py-4 text-slate-900 outline-none transition focus:border-[#646cff] dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full rounded-2xl bg-gradient-to-r from-[#646cff] to-[#a855f7] px-5 py-4 font-bold text-white shadow-lg shadow-violet-300/40 transition hover:opacity-90 disabled:opacity-60"
+            >
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+          </form>
+
+          <p className="mt-6 text-center text-sm text-slate-600 dark:text-slate-400">
+            Do not have an account?{' '}
+            <Link to="/register" className="font-bold text-[#646cff]">
+              Register
+            </Link>
+          </p>
+        </div>
       </div>
     </section>
   )

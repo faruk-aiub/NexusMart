@@ -1,1 +1,156 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(100, 108, 255, 0.16), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.14), transparent 30%),
+    #f8fafc;
+}
+
+.dark body {
+  background:
+    radial-gradient(circle at top left, rgba(100, 108, 255, 0.22), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.18), transparent 32%),
+    #111827;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+.dark .bg-white {
+  background-color: #1f2937 !important;
+}
+
+.dark .bg-slate-50,
+.dark .bg-gray-50,
+.dark .bg-gray-100,
+.dark .bg-slate-100 {
+  background-color: #111827 !important;
+}
+
+.dark .bg-slate-200,
+.dark .bg-gray-200 {
+  background-color: #374151 !important;
+}
+
+.dark .text-slate-900,
+.dark .text-gray-900 {
+  color: #f9fafb !important;
+}
+
+.dark .text-slate-700,
+.dark .text-gray-700 {
+  color: #e5e7eb !important;
+}
+
+.dark .text-slate-600,
+.dark .text-gray-600 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-slate-500,
+.dark .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+.dark .text-slate-400,
+.dark .text-gray-400 {
+  color: #cbd5e1 !important;
+}
+
+.dark .border-slate-100,
+.dark .border-slate-200,
+.dark .border-slate-300,
+.dark .border-gray-300 {
+  border-color: #374151 !important;
+}
+
+.dark .shadow-slate-200,
+.dark .shadow-blue-100,
+.dark .shadow-violet-300\/40 {
+  box-shadow: none !important;
+}
+
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #111827 !important;
+  color: #ffffff !important;
+  border-color: #374151 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+.dark table {
+  color: #e5e7eb;
+}
+
+.dark thead tr {
+  background-color: #111827 !important;
+}
+
+.dark tr {
+  border-color: #374151 !important;
+}
+
+/* Fix colored cards in dark mode */
+.dark .bg-blue-50,
+.dark .bg-purple-50,
+.dark .bg-green-50,
+.dark .bg-yellow-50,
+.dark .bg-red-50,
+.dark .bg-slate-50 {
+  background-color: #1f2937 !important;
+}
+
+.dark .bg-blue-100,
+.dark .bg-purple-100,
+.dark .bg-green-100,
+.dark .bg-yellow-100,
+.dark .bg-red-100 {
+  background-color: #374151 !important;
+}
+
+.dark .text-blue-700,
+.dark .text-purple-700,
+.dark .text-green-700,
+.dark .text-yellow-700,
+.dark .text-red-700 {
+  color: #e5e7eb !important;
+}
+
+
+.vite-gradient-text {
+  background: linear-gradient(90deg, #646cff, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.vite-gradient-bg {
+  background: linear-gradient(135deg, #646cff, #a855f7);
+}
+
+.vite-card {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(18px);
+}
+
+.dark .vite-card {
+  background: rgba(31, 41, 55, 0.88);
+  border-color: rgba(148, 163, 184, 0.18);
+}

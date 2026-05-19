@@ -9,6 +9,7 @@ import * as bcrypt from 'bcryptjs';
 import { UsersService } from '../users/users.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
+import { UserRole } from '../common/enums/user-role.enum';
 
 @Injectable()
 export class AuthService {
@@ -31,6 +32,7 @@ export class AuthService {
       email: registerDto.email,
       password: hashedPassword,
       phone: registerDto.phone,
+      role: registerDto.role || UserRole.CUSTOMER,
     });
 
     return {
@@ -62,13 +64,13 @@ export class AuthService {
       throw new UnauthorizedException('Invalid email or password');
     }
 
-    const tokenPayload = {
+    const payload = {
       sub: user.id,
       email: user.email,
       role: user.role,
     };
 
-    const accessToken = this.jwtService.sign(tokenPayload);
+    const accessToken = await this.jwtService.signAsync(payload);
 
     return {
       message: 'Login successful',
@@ -77,6 +79,7 @@ export class AuthService {
         id: user.id,
         fullName: user.fullName,
         email: user.email,
+        phone: user.phone,
         role: user.role,
         status: user.status,
       },

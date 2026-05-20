@@ -6,10 +6,10 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 
-import { UsersService } from '../users/users.service';
-import { RegisterDto } from './dto/register.dto';
-import { LoginDto } from './dto/login.dto';
 import { UserRole } from '../common/enums/user-role.enum';
+import { UsersService } from '../users/users.service';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
 
 @Injectable()
 export class AuthService {
@@ -32,7 +32,7 @@ export class AuthService {
       email: registerDto.email,
       password: hashedPassword,
       phone: registerDto.phone,
-      role: registerDto.role || UserRole.CUSTOMER,
+      role: UserRole.CUSTOMER,
     });
 
     return {

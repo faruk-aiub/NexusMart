@@ -11,7 +11,6 @@ function Register() {
     email: '',
     password: '',
     phone: '',
-    role: 'customer',
   })
 
   const [message, setMessage] = useState('')
@@ -64,7 +63,7 @@ function Register() {
             </h1>
 
             <p className="mt-2 text-slate-500 dark:text-slate-400">
-              Register as admin or customer.
+              Create your NexusMart customer account.
             </p>
           </div>
 
@@ -136,22 +135,6 @@ function Register() {
                 placeholder="01800000000"
                 className="w-full rounded-2xl border border-slate-300 bg-white px-5 py-4 text-slate-900 outline-none transition focus:border-[#646cff] dark:border-slate-700 dark:bg-slate-800 dark:text-white"
               />
-            </div>
-
-            <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">
-                Register As
-              </label>
-
-              <select
-                name="role"
-                value={formData.role}
-                onChange={handleChange}
-                className="w-full rounded-2xl border border-slate-300 bg-white px-5 py-4 text-slate-900 outline-none transition focus:border-[#646cff] dark:border-slate-700 dark:bg-slate-800 dark:text-white"
-              >
-                <option value="customer">Customer</option>
-                <option value="admin">Admin</option>
-              </select>
             </div>
 
             <button

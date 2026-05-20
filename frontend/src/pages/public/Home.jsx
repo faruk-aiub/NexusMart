@@ -17,7 +17,7 @@ function Home() {
           </h1>
 
           <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600 dark:text-slate-300">
-            Discover quality products, manage your cart, place orders, and track
+            Discover quality products, manage your cart, place orders and track
             everything from one clean and simple e-commerce platform.
           </p>
 
